@@ -1,52 +1,64 @@
-import { nanoid } from 'nanoid';
-import { Component } from 'react';
+// import { nanoid } from 'nanoid';
+import { useState } from 'react';
 import css from './ContactForm.module.css';
+import { nanoid } from 'nanoid';
 
-export class ContactForm extends Component {
+export const ContactForm = ({ onSubmit }) => {
 
-    state = {
-        name: '',
-        number: ''
+    const [name, setName] = useState('');
+    const [number, setNumber] = useState('');
+
+    const reset = () => {
+        setName('');
+        setNumber('');
     };
 
-    handleSubmit = (event) => {
+    const handleSubmit = (event) => {
         event.preventDefault();
 
-        this.props.onSubmit({ ...this.state });
-
-        this.setState({
-            name: '',
-            number: ''
-        });
-    };
-
-    handleChange = ({ target: { name, value } }) => {
-        this.setState({
-            [name]: value,
+        const data = {
+            name,
+            number,
             id: nanoid()
-        });
+        }
+
+        onSubmit(data);
+
+        reset();
     };
 
-    render() {
-        const { name, number } = this.state;
-        return (
-            <form onSubmit={this.handleSubmit} className={css.form}>
-                <label className={css.formTitle}>Name: </label>
-                <input className={css.formInput}
-                    type="text"
-                    name="name"
-                    value={name}
-                    required
-                    onChange={this.handleChange} />
-                <label className={css.formTitle}>Number: </label>
-                <input className={css.formInput}
-                    type="tel"
-                    name="number"
-                    value={number}
-                    required
-                    onChange={this.handleChange} />
-                <button className={css.saveButton}>Save contact</button>
-            </form>
-        );
+    const handleChange = ({ target: { name, value } }) => {
+        switch (name) {
+            case 'name':
+                setName(value);
+                break;
+
+            case 'number':
+                setNumber(value);
+                break;
+
+            default:
+                break;
+        }
     };
-}
+
+    return (
+        <form onSubmit={handleSubmit} className={css.form}>
+            <label className={css.formTitle}>Name: </label>
+            <input className={css.formInput}
+                type="text"
+                name="name"
+                value={name}
+                required
+                onChange={handleChange} />
+            <label className={css.formTitle}>Number: </label>
+            <input className={css.formInput}
+                type="tel"
+                name="number"
+                value={number}
+                required
+                onChange={handleChange} />
+            <button className={css.saveButton}>Save contact</button>
+        </form>
+    );
+};
