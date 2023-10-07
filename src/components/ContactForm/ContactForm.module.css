@@ -1,0 +1,39 @@
+.form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.formTitle {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.formInput {
+    width: 50%;
+    border: 1px solid grey;
+}
+
+
+.formInput:hover,
+.formInput:focus {
+    border: 2px solid tomato;
+}
+
+.saveButton {
+    width: 100px;
+    height: 25px;
+    background-color: #fff;
+    border: 1px solid tomato;
+    border-radius: 10px;
+}
+
+.saveButton:hover,
+.saveButton:focus {
+    border: 1px solid tomato;
+    background-color: tomato;
+    color: #fff;
+
+}

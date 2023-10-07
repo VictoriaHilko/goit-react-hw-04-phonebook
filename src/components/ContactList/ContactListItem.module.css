@@ -1,0 +1,21 @@
+.deleteButton {
+    width: 70px;
+    height: 25px;
+    background-color: #fff;
+    border: 1px solid tomato;
+    border-radius: 10px;
+}
+
+.deleteButton:hover,
+.deleteButton:focus {
+    border: 1px solid tomato;
+    background-color: tomato;
+    color: #fff;
+
+}
+
+
+.itemName {
+    font-size: 20px;
+    font-weight: 700;
+}
